@@ -29,9 +29,9 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
     public ElementApiTask(ApiTaskCallback apiTaskCallback, String endpoints) {
         Context context = apiTaskCallback.getContext();
         this.apiTaskCallback = apiTaskCallback;
-        this.builder = new Request.Builder().url("https://your-base-address:9443/".concat(endpoints)); // TODO: replace this with your base address
+        this.builder = new Request.Builder().url("https://10.20.214.58:9443/".concat(endpoints)); // TODO: replace this with your base address
 
-        builder.addHeader("apiKey", "your-api-key"); // TODO: Replace this with your api key
+        builder.addHeader("apiKey", "ISlhCOVBPpZYhStiCXJOJ7XdnTsAMPDsFYhmPCkyooTtclCL91gE6fzWZiwHSoSU@id-fm"); // TODO: Replace this with your api key
         builder.addHeader("appVersion", "1.0");
         builder.addHeader("os", "ANDROID");
         builder.addHeader("appId", context.getPackageName());
