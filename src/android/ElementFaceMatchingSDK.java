@@ -80,10 +80,12 @@ public class ElementFaceMatchingSDK extends CordovaPlugin {
     		return false;
 		}
 
-		switch(action) {
-		    case "match": return doMatching(args);
-		    case "enroll": return doEnroll(args);
-		    default: return false;
+		if(action.equals("match")){
+			return doMatching(args);
+		}else if(action.equals("enroll")){
+			return doEnroll(args);
+		}else{
+			return false;
 		}
 	}
 
