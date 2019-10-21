@@ -31,7 +31,7 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
         this.apiTaskCallback = apiTaskCallback;
         this.builder = new Request.Builder().url("https://10.20.226.69:1501/".concat(endpoints)); // TODO: replace this with your base address
 
-        builder.addHeader("apiKey", "ISlhCOVBPpZYhStiCXJOJ7XdnTsAMPDsFYhmPCkyooTtclCL91gE6fzWZiwHSoSU@id-fm"); // TODO: Replace this with your api key
+        builder.addHeader("apiKey", "rnfzG7tChQ5lqLn4Pj1UfQtjqK2K0Pn0h8fcnNNChUXI4mgT20OjoL3Y1syu34Ip@bca-fm"); // TODO: Replace this with your api key
         builder.addHeader("appVersion", "1.0");
         builder.addHeader("os", "ANDROID");
         builder.addHeader("appId", context.getPackageName());
