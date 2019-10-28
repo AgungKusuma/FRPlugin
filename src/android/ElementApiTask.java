@@ -61,7 +61,7 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
             apiTaskCallback.onResult(response);
 
         } catch (Exception e) {
-            apiTaskCallback.onException(e.getMessage() + apiTaskCallback.getContext().getPackageName().toString());
+            apiTaskCallback.onException(e.getMessage());
         }
 
         return null;
