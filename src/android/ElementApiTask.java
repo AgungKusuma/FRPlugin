@@ -11,7 +11,16 @@ import com.element.camera.ElementSDK;
 import com.google.gson.Gson;
 
 import java.util.TimeZone;
-
+//tambahan
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+//-----
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -25,7 +34,50 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
     private final ApiTaskCallback apiTaskCallback;
 
     private final Request.Builder builder;
+//-------------------------------------------------------------------------------------------------ignore ssl
+    private static OkHttpClient getUnsafeOkHttpClient() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain,
+                                                       String authType) throws CertificateException {
+                        }
 
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain,
+                                                       String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new X509Certificate[0];
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            return new OkHttpClient.Builder()
+                    .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
+                    .hostnameVerifier(new HostnameVerifier() {
+						@Override
+						public boolean verify(String hostname, SSLSession session) {
+							// TODO Auto-generated method stub
+							return true;
+						}
+                    }).build();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+//-------------------------------------------------------------------------------------------------end of ignore ssl
     public ElementApiTask(ApiTaskCallback apiTaskCallback, String endpoints) {
         Context context = apiTaskCallback.getContext();
         this.apiTaskCallback = apiTaskCallback;
@@ -41,7 +93,7 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
 
     @Override
     protected Void doInBackground(Object... params) {
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = getUnsafeOkHttpClient();
 
         try {
             FmRequest fmRequest = new FmRequest();
