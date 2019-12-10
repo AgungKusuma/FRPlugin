@@ -41,7 +41,7 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
 
     @Override
     protected Void doInBackground(Object... params) {
-        OkHttpClient client = getUnsafeOkHttpClient();
+        OkHttpClient client = OkHttpClient();
 
         try {
             FmRequest fmRequest = new FmRequest();
