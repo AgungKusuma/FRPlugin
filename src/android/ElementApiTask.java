@@ -29,7 +29,7 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
     public ElementApiTask(ApiTaskCallback apiTaskCallback, String endpoints) {
         Context context = apiTaskCallback.getContext();
         this.apiTaskCallback = apiTaskCallback;
-        this.builder = new Request.Builder().url("http://x:1234".concat(endpoints)); // TODO: replace this with your base address
+        this.builder = new Request.Builder().url("http://x:1234/".concat(endpoints)); // TODO: replace this with your base address
 	//10.20.226.69
         builder.addHeader("apiKey", ""); // TODO: Replace this with your api key rnfzG7tChQ5lqLn4Pj1UfQtjqK2K0Pn0h8fcnNNChUXI4mgT20OjoL3Y1syu34Ip@bca-fm
         builder.addHeader("appVersion", "1.0");
