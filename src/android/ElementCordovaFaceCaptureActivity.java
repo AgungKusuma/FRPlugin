@@ -1,7 +1,5 @@
 package com.element.camera;
 
-import java.util.Base64; //tambahan
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,7 +53,6 @@ public class ElementCordovaFaceCaptureActivity extends ElementFaceCaptureActivit
 		ArrayList<String> list = new ArrayList<String>();
 		for (Capture capture : captures) {
 			byte[] imageBytes = capture.data;
-			String imageBase64 = Base64.getEncoder().encodeToString(imageBytes); //to be sent
 			String filename = capture.tag;
 			FileOutputStream outputStream;
 
@@ -69,7 +66,7 @@ public class ElementCordovaFaceCaptureActivity extends ElementFaceCaptureActivit
 				e.printStackTrace();
 			}
 		}
-		setResult(true, imageBase64);
+		setResult(true, new Gson().toJson(list));
 	}
 
 	private void handleServerPost(Capture[] captures) {
