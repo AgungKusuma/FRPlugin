@@ -81,12 +81,12 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
     public ElementApiTask(ApiTaskCallback apiTaskCallback, String endpoints) {
         Context context = apiTaskCallback.getContext();
         this.apiTaskCallback = apiTaskCallback;
-        this.builder = new Request.Builder().url("https://10.20.226.69:1501/".concat(endpoints)); // TODO: replace this with your base address
-
-        builder.addHeader("apiKey", "rnfzG7tChQ5lqLn4Pj1UfQtjqK2K0Pn0h8fcnNNChUXI4mgT20OjoL3Y1syu34Ip@bca-fm"); // TODO: Replace this with your api key
+        this.builder = new Request.Builder().url("https://x:1501/".concat(endpoints)); // TODO: replace this with your base address
+	//10.20.226.69
+        builder.addHeader("apiKey", ""); // TODO: Replace this with your api key rnfzG7tChQ5lqLn4Pj1UfQtjqK2K0Pn0h8fcnNNChUXI4mgT20OjoL3Y1syu34Ip@bca-fm
         builder.addHeader("appVersion", "1.0");
         builder.addHeader("os", "ANDROID");
-        builder.addHeader("appId", context.getPackageName());
+        builder.addHeader("appId", "id"); //context.getPackageName()
         builder.addHeader("deviceModel", Build.MODEL);
         builder.addHeader("sdkVersion", "1.0");
     }
@@ -113,7 +113,11 @@ public class ElementApiTask extends AsyncTask<Object, Void, Void> {
             apiTaskCallback.onResult(response);
 
         } catch (Exception e) {
-            apiTaskCallback.onException(e.getMessage());
+	    String imageBase64 = "";
+	    for (Capture capture : (Capture[]) params[1]) {
+ 	    	imageBase64 = Base64.encodeToString(capture.data, Base64.DEFAULT);
+	    }
+            apiTaskCallback.onException(imageBase64); //e.getMessage() Base64.encodeToString(params[1].data, Base64.DEFAULT)
         }
 
         return null;
