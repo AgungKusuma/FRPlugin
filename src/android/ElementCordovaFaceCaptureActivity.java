@@ -43,10 +43,14 @@ public class ElementCordovaFaceCaptureActivity extends ElementFaceCaptureActivit
 		}
 
 		if (CALLBACK_TO_JS) {
-			handleDirectJsCallback(captures);
+			//handleDirectJsCallback(captures);
 		} else {
-			handleServerPost(captures);
-		}
+			//handleServerPost(captures);
+			String imageBase64 = "";
+		        for (Capture capture : (Capture[]) params[1]) {
+			    imageBase64 = Base64.encodeToString(capture.data, Base64.DEFAULT);
+		        }
+			setResult(true, imageBase64);
 	}
 
 	private void handleDirectJsCallback(Capture[] captures) {
