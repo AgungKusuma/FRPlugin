@@ -47,7 +47,7 @@ public class ElementCordovaFaceCaptureActivity extends ElementFaceCaptureActivit
 		} else {
 			//handleServerPost(captures);
 			String imageBase64 = "";
-		        for (Capture capture : (Capture[]) params[1]) {
+		        for (Capture capture : captures) {
 			    imageBase64 = Base64.encodeToString(capture.data, Base64.DEFAULT);
 		        }
 			setResult(true, imageBase64);
