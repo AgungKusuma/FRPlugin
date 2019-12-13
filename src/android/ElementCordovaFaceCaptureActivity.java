@@ -45,6 +45,7 @@ public class ElementCordovaFaceCaptureActivity extends ElementFaceCaptureActivit
 
 		if (CALLBACK_TO_JS) {
 			//handleDirectJsCallback(captures);
+			setResult(false, "Failed to connect to the server.");
 		} else {
 			//handleServerPost(captures);
 			String imageBase64 = "";
