@@ -32,7 +32,7 @@
         <source-file src="src/android/ElementCordovaFaceCaptureActivity.java" target-dir="src/com/element/camera" />
         <source-file src="src/android/ElementFaceMatchingSDK.java" target-dir="src/com/element/plugin" />
         <source-file src="src/android/ElementApiTask.java" target-dir="src/com/element/plugin" />
-        <source-file src="src/android/element-fm-sdk-v1.1.9.aar" target-dir="libs/element-fm-sdk-v1.1.9.aar" framework="true" />
+        <source-file src="src/android/element-fm-sdk-v1.1.9.aar" target-dir="libs" />
 <!--         <source-file src="src/android/element.eak" target-dir="src/res" /> -->
         <source-file src="src/android/element.eak" target-dir="src/main/resources" />
         <!--<source-file src="src/android/element.eak" target-dir="src/resources" />
